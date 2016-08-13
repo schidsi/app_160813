@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.List;
 
 
 // Database handling
@@ -75,4 +76,36 @@ public class MemberDAO extends SQLiteOpenHelper {
         db.execSQL("drop table if exists member;");
         this.onCreate(db);
     }
+
+    public MemberBean findById(String id) // 아이디 조회
+    {
+        return null;
+    }
+
+    public int count() // 전체 회원 수 조회
+    {
+        return 0;
+    }
+
+    public List<MemberBean> list() // 전체 조회
+    {
+        return null;
+    }
+
+    public List<MemberBean> findByName(String name) // 이름으로 검색(중복이름 있을 수 있으므로 List)
+    {
+        return null;
+    }
+
+    // Update
+    public void update(MemberBean member) {
+
+    }
+
+    // Delete
+    public void delete(String id) {
+
+    }
+
+
 }

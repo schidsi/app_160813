@@ -26,7 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mypage.MyPageActivity"></activity>
+        <activity android:name=".mypage.MyPageActivity" />
+        <activity android:name=".mypage.ListActivity" />
+        <activity android:name=".mypage.DetailActivity"></activity>
     </application>
 
 </manifest>
