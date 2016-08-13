@@ -79,7 +79,25 @@ public class MemberDAO extends SQLiteOpenHelper {
 
     public MemberBean findById(String id) // 아이디 조회
     {
-        return null;
+        String sql = "select " +
+                String.format("%s, %s, %s, %s, %s, %s ",ID,PW,NAME,PHONE,EMAIL,ADDR) +
+                " from member " +
+                String.format("where id = '%s';", id);
+        SQLiteDatabase db = this.getReadableDatabase();
+        MemberBean result = new MemberBean();
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if(cursor.moveToNext()){
+            result.setId(cursor.getString(0));
+            result.setPw(cursor.getString(1));
+            result.setName(cursor.getString(2));
+            result.setPhone(cursor.getString(3));
+            result.setEmail(cursor.getString(4));
+            result.setAddr(cursor.getString(5));
+        }else{
+            result.setId("NONE"); // findById는 Id만 검색하므로 Id만 None으로 변경하면 됨 (다른 다섯개는 안해도 됨)
+        }
+        return result;
     }
 
     public int count() // 전체 회원 수 조회

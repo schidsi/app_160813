@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.gyeom.app_160813.R;
+import com.example.gyeom.app_160813.mypage.ListActivity;
 import com.example.gyeom.app_160813.mypage.MyPageActivity;
 import com.example.gyeom.app_160813.util.CalcActivity;
 
@@ -49,7 +50,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(LoginActivity.this,"ID없음",Toast.LENGTH_LONG).show();
                 }else {
                     if(pw.equals(result.getPw())){
-                        startActivity(new Intent(this.getApplicationContext(),MyPageActivity.class));
+                        startActivity(new Intent(this.getApplicationContext(),ListActivity.class));
                     }else{
                         Toast.makeText(LoginActivity.this,"비밀번호 틀림",Toast.LENGTH_LONG).show();
                     }

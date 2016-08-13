@@ -39,8 +39,8 @@
             android:text="PHONE : "
             android:textSize="30dp"
             android:gravity="center"/>
-        <TextView
-            android:id="@+id/tv_phone"
+        <EditText
+            android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"/>
@@ -55,8 +55,8 @@
             android:text="EMAIL : "
             android:textSize="30dp"
             android:gravity="center"/>
-        <TextView
-            android:id="@+id/tv_email"
+        <EditText
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"/>
@@ -71,8 +71,8 @@
             android:text="ADDR : "
             android:textSize="30dp"
             android:gravity="center"/>
-        <TextView
-            android:id="@+id/tv_addr"
+        <EditText
+            android:id="@+id/et_addr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"/>
@@ -85,16 +85,16 @@
         android:padding="10dp">
 
         <Button
-            android:id="@+id/bt_call"
+            android:id="@+id/bt_update"
             android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:text="전화걸기"/>
+            android:text="수정하기"/>
 
         <Button
-            android:id="@+id/bt_map"
+            android:id="@+id/bt_delete"
             android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:text="지도보기"/>
+            android:text="삭제하기"/>
 
 
     </LinearLayout>
