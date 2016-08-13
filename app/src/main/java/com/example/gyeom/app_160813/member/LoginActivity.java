@@ -20,7 +20,6 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         service = new MemberServiceImpl( this.getApplicationContext());
