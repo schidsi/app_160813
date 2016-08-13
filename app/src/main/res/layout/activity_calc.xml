@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CALCULATOR"
+        android:textSize="30dp"
+        android:gravity="center"/>
+    <EditText
+        android:id="@+id/et_num1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:hint="INPUT NUMBER.."/>
+    <EditText
+        android:id="@+id/et_num2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:hint="INPUT NUMBER"/>
+    <Button
+        android:id="@+id/bt_plus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" + "
+        android:textSize="30dp"/>
+    <Button
+        android:id="@+id/bt_minus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" - "
+        android:textSize="30dp"/>
+    <Button
+        android:id="@+id/bt_multi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" X "
+        android:textSize="30dp"/>
+    <Button
+        android:id="@+id/bt_divid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" ÷ "
+        android:textSize="30dp"/>
+    <Button
+        android:id="@+id/bt_remainder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" % "
+        android:textSize="30dp"/>
+    <Button
+        android:id="@+id/bt_equal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" = "
+        android:textSize="30dp"/>
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RESULT : "
+        android:textSize="20dp"
+        android:textColor="#ff0000"
+        android:paddingTop="20dp"
+        />
+</LinearLayout>
+
