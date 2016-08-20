@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.gyeom.app_160813.R;
@@ -15,12 +17,14 @@ import com.example.gyeom.app_160813.member.MemberBean;
 import com.example.gyeom.app_160813.member.MemberService;
 import com.example.gyeom.app_160813.member.MemberServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends Activity implements View.OnClickListener {
 
     EditText et_search;
     Button bt_mypage, bt_findByName, bt_findById;
+    ListView lv_memberlist;
     MemberService service;
 
     @Override
@@ -28,11 +32,26 @@ public class ListActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         service = new MemberServiceImpl(this.getApplicationContext());
+        ArrayList<MemberBean> list = service.list();
 
         et_search = (EditText) findViewById(R.id.et_search);
         bt_mypage = (Button) findViewById(R.id.bt_mypage);
         bt_findByName = (Button) findViewById(R.id.bt_findByName);
         bt_findById = (Button) findViewById(R.id.bt_findById);
+        lv_memberlist = (ListView) findViewById(R.id.lv_memberlist);
+        lv_memberlist.setAdapter(new MemberAdapter(this, list)); // context = 현재 Activity의 모든 정보를 넘김
+        lv_memberlist.setOnItemClickListener(new AdapterView.OnItemClickListener() { // ListView는 하나의 ID에 여러개의 사진이 있으므로, ItemClickListener, Click이 하나므로 inner에 바로 Click 선언
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = lv_memberlist.getItemAtPosition(position);
+                MemberBean member = (MemberBean) o;
+                Log.d("선택한 이름", o.toString());
+                Intent intent = new Intent(ListActivity.this, DetailActivity.class);
+                intent.putExtra("id", member.getId());
+                startActivity(intent);
+
+            }
+        });
 
         bt_mypage.setOnClickListener(this);
         bt_findByName.setOnClickListener(this);

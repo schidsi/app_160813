@@ -4,9 +4,12 @@ package com.example.gyeom.app_160813.member;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -105,12 +108,33 @@ public class MemberDAO extends SQLiteOpenHelper {
         return 0;
     }
 
-    public List<MemberBean> list() // 전체 조회
+    public ArrayList<MemberBean> list() // 전체 조회
     {
-        return null;
+        String sql = "select " +
+                String.format("%s, %s, %s, %s, %s, %s ",ID,PW,NAME,PHONE,EMAIL,ADDR) +
+                " from member; ";
+        ArrayList<MemberBean> temp = new ArrayList<MemberBean>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor != null){
+            Log.d("목록조회", ": 성공 !!");
+            cursor.moveToFirst(); // Select로 여러개의 행 나왔을 때, 처음의 행으로 이동해야 함
+        }
+        do {
+            MemberBean result = new MemberBean();
+            result.setId(cursor.getString(0));
+            result.setPw(cursor.getString(1));
+            result.setName(cursor.getString(2));
+            result.setPhone(cursor.getString(3));
+            result.setEmail(cursor.getString(4));
+            result.setAddr(cursor.getString(5));
+            temp.add(result);
+
+        } while (cursor.moveToNext());
+        return temp;
     }
 
-    public List<MemberBean> findByName(String name) // 이름으로 검색(중복이름 있을 수 있으므로 List)
+    public ArrayList<MemberBean> findByName(String name) // 이름으로 검색(중복이름 있을 수 있으므로 List)
     {
         return null;
     }

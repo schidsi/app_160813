@@ -4,6 +4,8 @@ package com.example.gyeom.app_160813.member;
 import android.content.Context;
 import android.util.Log;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MemberServiceImpl implements MemberService{
@@ -33,13 +35,13 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public List<MemberBean> list() {
+    public ArrayList<MemberBean> list() {
         Log.d("서비스:list", "list");
         return dao.list();
     }
 
     @Override
-    public List<MemberBean> findByName(String name) {
+    public ArrayList<MemberBean> findByName(String name) {
         Log.d("서비스:findByname","listname");
         return dao.findByName(name);
     }

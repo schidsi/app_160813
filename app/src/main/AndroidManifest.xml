@@ -29,7 +29,8 @@
         <activity android:name=".mypage.MyPageActivity" />
         <activity android:name=".mypage.ListActivity" />
         <activity android:name=".mypage.DetailActivity" />
-        <activity android:name=".mypage.UpadateActivity"></activity>
+        <activity android:name=".mypage.UpadateActivity" />
+        <activity android:name=".util.ImageActivity"></activity>
     </application>
 
 </manifest>
