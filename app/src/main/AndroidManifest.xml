@@ -29,10 +29,10 @@
         <activity android:name=".mypage.MyPageActivity" />
         <activity android:name=".mypage.ListActivity" />
         <activity android:name=".mypage.DetailActivity" />
-        <activity android:name=".mypage.UpadateActivity" />
         <activity android:name=".util.ImageActivity" />
         <activity android:name=".member.AddActivity" />
-        <activity android:name=".mypage.SearchActivity"></activity>
+        <activity android:name=".mypage.SearchActivity" />
+        <activity android:name=".mypage.UpdateActivity"></activity>
     </application>
 
 </manifest>

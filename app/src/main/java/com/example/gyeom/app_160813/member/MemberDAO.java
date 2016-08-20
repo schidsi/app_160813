@@ -165,11 +165,26 @@ public class MemberDAO extends SQLiteOpenHelper {
 
     // Update
     public void update(MemberBean member) {
+        Log.d("Update 진입", member.getPw());
+        String sql = "update member " +
+                String.format("set pw = '%s', email = '%s', addr = '%addr' where id = '%s'",
+                        member.getPw(),
+                        member.getEmail(),
+                        member.getAddr(),
+                        member.getId());
+        SQLiteDatabase db = this.getWritableDatabase(); // this = SQLiteOpenHelper
+        db.execSQL(sql);
+        db.close(); // commit을 위한 메소드
 
     }
 
     // Delete
     public void delete(String id) {
+        Log.d("DELETE 진입", id);
+        String sql = "delete from member where id = '" + id + "';";
+        SQLiteDatabase db = this.getWritableDatabase(); // this = SQLiteOpenHelper
+        db.execSQL(sql);
+        db.close(); // commit을 위한 메소드
 
     }
 

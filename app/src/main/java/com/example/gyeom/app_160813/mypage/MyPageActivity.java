@@ -1,8 +1,10 @@
 package com.example.gyeom.app_160813.mypage;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,7 +19,7 @@ import com.example.gyeom.app_160813.member.MemberServiceImpl;
 public class MyPageActivity extends Activity implements View.OnClickListener {
     ImageView iv_profile;
     TextView tv_name, tv_id, tv_phone, tv_email, tv_addr;
-    Button bt_call, bt_map;
+    Button bt_call, bt_map, bt_update;
 
     MemberService service;
 
@@ -41,16 +43,28 @@ public class MyPageActivity extends Activity implements View.OnClickListener {
         tv_email.setText(member.getEmail());
         tv_addr.setText(member.getAddr());
 
-
-
         bt_call = (Button) findViewById(R.id.bt_call);
         bt_map = (Button) findViewById(R.id.bt_map);
+        bt_update = (Button) findViewById(R.id.bt_update);
 
         bt_call.setOnClickListener(this);
         bt_map.setOnClickListener(this);
+        bt_update.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bt_call:
+                break;
+            case R.id.bt_calc:
+                break;
+            case R.id.bt_update:
+                Log.d("bt_update","bt_update");
+                Intent intent = new Intent(MyPageActivity.this, UpdateActivity.class);
+                intent.putExtra("id", tv_id.getText().toString() );
+                break;
+
+        }
     }
 }

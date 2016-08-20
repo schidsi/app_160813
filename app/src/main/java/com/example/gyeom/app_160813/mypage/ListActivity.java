@@ -1,8 +1,10 @@
 package com.example.gyeom.app_160813.mypage;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +29,7 @@ public class ListActivity extends Activity implements View.OnClickListener {
     Button bt_mypage, bt_findByName, bt_findById, bt_add;
     ListView lv_memberlist;
     MemberService service;
+    int AtPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class ListActivity extends Activity implements View.OnClickListener {
         lv_memberlist.setAdapter(new MemberAdapter(this, list)); // context = 현재 Activity의 모든 정보를 넘김
         lv_memberlist.setOnItemClickListener(new AdapterView.OnItemClickListener() { // ListView는 하나의 ID에 여러개의 사진이 있으므로, ItemClickListener, Click이 하나므로 inner에 바로 Click 선언
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { // 나온 애들중에 중에 하나를 클릭할 경우
                 Object o = lv_memberlist.getItemAtPosition(position);
                 MemberBean member = (MemberBean) o;
                 Log.d("선택한 이름", o.toString());
@@ -52,6 +55,35 @@ public class ListActivity extends Activity implements View.OnClickListener {
                 intent.putExtra("id", member.getId());
                 startActivity(intent);
 
+            }
+        });
+
+        lv_memberlist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() { // 하나를 길게 클릭할 경우
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AtPosition = position;
+                new AlertDialog.Builder(ListActivity.this)
+                        .setTitle("DELETE")
+                        .setMessage("삭제 ?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() { // yes button
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Object o = lv_memberlist.getItemAtPosition(AtPosition);
+                                        MemberBean member = (MemberBean) o;
+                                        service.delete(member.getId());
+                                    }
+                                }
+                        )
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() { // no button
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                }
+                        )
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                return true;
             }
         });
 

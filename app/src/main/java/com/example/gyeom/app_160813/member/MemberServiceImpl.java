@@ -49,13 +49,13 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public void update(MemberBean member) {
         Log.d("서비스:UPDATE","update");
-
+        dao.update(member);
     }
 
     @Override
     public void delete(String id) {
         Log.d("서비스:DELETE","delete");
-
+        dao.delete(id);
     }
 
     @Override
