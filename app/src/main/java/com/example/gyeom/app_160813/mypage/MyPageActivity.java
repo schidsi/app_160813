@@ -63,6 +63,7 @@ public class MyPageActivity extends Activity implements View.OnClickListener {
                 Log.d("bt_update","bt_update");
                 Intent intent = new Intent(MyPageActivity.this, UpdateActivity.class);
                 intent.putExtra("id", tv_id.getText().toString() );
+                startActivity(intent);
                 break;
 
         }
