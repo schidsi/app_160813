@@ -13,7 +13,7 @@ public interface MemberService {
     public MemberBean findById(String id); // 아이디 조회
     public int count(); // 전체 회원 수 조회
     public ArrayList<MemberBean> list(); // 전체 조회
-    public List<MemberBean> findByName(String name); // 이름으로 검색(중복이름 있을 수 있으므로 List)
+    public ArrayList<MemberBean> findByName(String name); // 이름으로 검색(중복이름 있을 수 있으므로 List)
 
     // Update
     public void update(MemberBean member);

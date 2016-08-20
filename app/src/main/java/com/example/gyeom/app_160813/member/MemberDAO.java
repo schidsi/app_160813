@@ -136,7 +136,31 @@ public class MemberDAO extends SQLiteOpenHelper {
 
     public ArrayList<MemberBean> findByName(String name) // 이름으로 검색(중복이름 있을 수 있으므로 List)
     {
-        return null;
+
+        String sql = "select " +
+                String.format("%s, %s, %s, %s, %s ",ID,NAME,PHONE,EMAIL,ADDR) +
+                " from member " +
+                " where name like '%" + name +"%';";
+
+        ArrayList<MemberBean> temp = new ArrayList<MemberBean>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor != null){
+            Log.d("이름으로조회", ": 성공 !!");
+            cursor.moveToFirst(); // Select로 여러개의 행 나왔을 때, 처음의 행으로 이동해야 함
+        }
+        do {
+            MemberBean result = new MemberBean();
+            result.setId(cursor.getString(0));
+            result.setName(cursor.getString(1));
+            result.setPhone(cursor.getString(2));
+            result.setEmail(cursor.getString(3));
+            result.setAddr(cursor.getString(4));
+            temp.add(result);
+
+        } while (cursor.moveToNext());
+        return temp;
+
     }
 
     // Update
