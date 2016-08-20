@@ -3,6 +3,7 @@ package com.example.gyeom.app_160813.mypage;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,10 +44,16 @@ public class ListActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
         String keyword = et_search.getText().toString();
+        MemberBean member = service.findById(keyword);
 
         switch(v.getId()){
             case R.id.bt_mypage:
+                String id = getIntent().getStringExtra("id");
+                Intent intent = new Intent(this.getApplicationContext(), MyPageActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
                 break;
+
             case R.id.bt_findByName:
                 if(keyword.equals("")){
                     Toast.makeText(ListActivity.this,"검색어를 입력하세요", Toast.LENGTH_LONG).show();
@@ -54,20 +61,19 @@ public class ListActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(ListActivity.this,"검색어 : " + keyword ,Toast.LENGTH_LONG).show();
                     List<MemberBean> list = service.findByName(keyword);
                 }
-
                 break;
+
             case R.id.bt_findById:
                 if(keyword.equals("")){
                     Toast.makeText(ListActivity.this,"검색어를 입력하세요", Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(ListActivity.this,"검색어 : " + keyword ,Toast.LENGTH_LONG).show();
-                    MemberBean member = service.findById(keyword);
                     if(member.getId().equals("None")){
                         Toast.makeText(ListActivity.this,"해당 아이디가 존재하지 않습니다." ,Toast.LENGTH_LONG).show();
                     }else{
-                        Intent intent = new Intent(this.getApplicationContext(), DetailActivity.class);
-                        intent.putExtra("id", member.getId());
-                        startActivity(intent);
+                        Intent Myintent = new Intent(this.getApplicationContext(), DetailActivity.class);
+                        Myintent.putExtra("id", member.getId());
+                        startActivity(Myintent);
                     }
                 }
 
